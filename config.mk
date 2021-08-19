@@ -10,6 +10,7 @@ MANPREFIX = $(PREFIX)/share/man
 X11INC = /usr/X11R6/include
 X11LIB = /usr/X11R6/lib
 
+ST_USR = /usr/share/st
 APPS = /usr/share/applications
 
 PKG_CONFIG = pkg-config
