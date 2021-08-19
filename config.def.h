@@ -230,14 +230,14 @@ ResourcePref resources[] = {
  */
 static MouseShortcut mshortcuts[] = {
 	/* mask                 button   function        argument       release */
-	{ XK_ANY_MOD,           Button2, clippaste,      {.i = 0           },  1 },
-  { XK_NO_MOD,            Button3, clippaste,      {.f = -1          }     },
-	{ ShiftMask,            Button4, ttysend,        {.s = "\033[5;2~" }     },
-	{ ControlMask,          Button4, zoom,           {.f = 1           }     },
-	{ XK_ANY_MOD,           Button4, ttysend,        {.s = "\031"      }     },
-	{ ShiftMask,            Button5, ttysend,        {.s = "\033[6;2~" }     },
-	{ ControlMask,          Button5, zoom,           {.f = -1          }     },
-	{ XK_ANY_MOD,           Button5, ttysend,        {.s = "\005"      }     },
+	{ XK_ANY_MOD,           Button2, clippaste,      {.i = 0           }, 1                },
+  { XK_NO_MOD,            Button3, clippaste,      {.f = -1          }                   },
+	{ ShiftMask,            Button4, ttysend,        {.s = "\033[5;2~" }                   },
+	{ ControlMask,          Button4, zoom,           {.f = 1           }                   },
+	{ XK_ANY_MOD,           Button4, kscrollup,      {.i = 5           }, 0, /* !alt */ -1 },
+	{ ShiftMask,            Button5, ttysend,        {.s = "\033[6;2~" }                   },
+	{ ControlMask,          Button5, zoom,           {.f = -1          }                   },
+	{ XK_ANY_MOD,           Button5, kscrolldown,    {.i = 5           }, 0, /* !alt */ -1 },
 };
 
 /* Internal keyboard shortcuts. */
@@ -263,6 +263,8 @@ static Shortcut shortcuts[] = {
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ SHIFT_CTRL_MOD,       XK_Num_Lock,    numlock,        {.i =  0} },
 	{ MODKEY,               XK_c,           normalMode,     {.i =  0} },
+	{ ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
+	{ ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
 };
 
 /*
