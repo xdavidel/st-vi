@@ -1,0 +1,10 @@
+st
+config.h
+*.o
+*.diff
+*.orig
+*.rej
+x.o
+pkg/
+*.pkg.tar.xz
+.ccls-cache/
