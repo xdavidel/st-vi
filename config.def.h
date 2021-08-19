@@ -238,8 +238,10 @@ static MouseShortcut mshortcuts[] = {
 	{ XK_ANY_MOD,           Button2, clippaste,      {.i = 0           },  1 },
   { XK_NO_MOD,            Button3, clippaste,      {.f = -1          }     },
 	{ ShiftMask,            Button4, ttysend,        {.s = "\033[5;2~" }     },
+	{ ControlMask,          Button4, zoom,           {.f = 1           }     },
 	{ XK_ANY_MOD,           Button4, ttysend,        {.s = "\031"      }     },
 	{ ShiftMask,            Button5, ttysend,        {.s = "\033[6;2~" }     },
+	{ ControlMask,          Button5, zoom,           {.f = -1          }     },
 	{ XK_ANY_MOD,           Button5, ttysend,        {.s = "\005"      }     },
 };
 
@@ -257,9 +259,9 @@ static Shortcut shortcuts[] = {
 	{ ControlMask,          XK_Print,       toggleprinter,  {.i =  0} },
 	{ ShiftMask,            XK_Print,       printscreen,    {.i =  0} },
 	{ XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0} },
-	{ MODKEY,               XK_m,           zoom,           {.f = +1} },
-	{ MODKEY,               XK_n,           zoom,           {.f = -1} },
-	{ SHIFT_CTRL_MOD,       XK_Home,        zoomreset,      {.f =  0} },
+	{ ControlMask,          XK_equal,       zoom,           {.f = +1} },
+	{ ControlMask,          XK_minus,       zoom,           {.f = -1} },
+	{ ControlMask,          XK_BackSpace,   zoomreset,      {.f = -1} },
 	{ SHIFT_CTRL_MOD,       XK_C,           clipcopy,       {.i =  0} },
 	{ SHIFT_CTRL_MOD,       XK_V,           clippaste,      {.i =  0} },
 	{ SHIFT_CTRL_MOD,       XK_Y,           selpaste,       {.i =  0} },
