@@ -5,7 +5,10 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
+static char *font = "mono:pixelsize=14:antialias=true:autohint=true";
+/* Spare fonts */
+static char *font2[] = { "JoyPixels:pixelsize=10:antialias=true:autohint=true" };
+
 static int borderpx = 2;
 
 /*
@@ -192,6 +195,7 @@ static uint forcemousemod = ShiftMask;
  */
 ResourcePref resources[] = {
 		{ "font",           STRING,  &font },
+		{ "fontalt0",       STRING,  &font2[0] },
 		{ "color0",         STRING,  &colorname[0] },
 		{ "color1",         STRING,  &colorname[1] },
 		{ "color2",         STRING,  &colorname[2] },
