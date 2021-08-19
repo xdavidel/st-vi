@@ -6,6 +6,7 @@ include config.mk
 
 SRC = st.c x.c
 OBJ = $(SRC:.c=.o)
+DSK = st.desktop
 
 all: options st
 
@@ -48,10 +49,12 @@ install: st
 	sed "s/VERSION/$(VERSION)/g" < st.1 > $(DESTDIR)$(MANPREFIX)/man1/st.1
 	chmod 644 $(DESTDIR)$(MANPREFIX)/man1/st.1
 	tic -sx st.info
+	cp -f ${DSK} ${APPS}
 	@echo Please see the README file regarding the terminfo entry of st.
 
 uninstall:
 	rm -f $(DESTDIR)$(PREFIX)/bin/st
 	rm -f $(DESTDIR)$(MANPREFIX)/man1/st.1
+	rm -f ${APPS}/${DSK}
 
 .PHONY: all options clean dist install uninstall
