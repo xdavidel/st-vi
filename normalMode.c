@@ -110,6 +110,10 @@ ExitState executeMotion(char const cs, KeySym const *const ks) {
 	else if (ks && *ks == XK_f) historyMove(0, 0, term.row-1+(term.c.y=0));
 	else if (ks && *ks == XK_b) historyMove(0, 0, -(term.c.y=term.row-1));
 	else if (ks && *ks == XK_h) overlay = !overlay;
+	else if (ks && *ks == XK_Up) historyMove(0, -(int)state.m.c, 0);
+	else if (ks && *ks == XK_Down) historyMove(0, (int)state.m.c, 0);
+	else if (ks && *ks == XK_Left) historyMove(-(int)state.m.c, 0, 0);
+	else if (ks && *ks == XK_Right) historyMove( (int)state.m.c, 0, 0);
 	else if (cs == 'K') historyMove(0, 0, -(int)state.m.c);
 	else if (cs == 'J') historyMove(0, 0,  (int)state.m.c);
 	else if (cs == 'k') historyMove(0, -(int)state.m.c, 0);
@@ -172,8 +176,18 @@ ExitState kPressHist(char const *cs, size_t len, int ctrl, KeySym const *kSym) {
 		if (len >= 1) decodeTo(cs, len, &searchStr);
 		applyPos(state.m.searchPos);
 		findString(state.m.search==fw ? 1 : -1, 1);
-	} else if (len == 0) { result = failed;
-	} else if (quantifier) { state.m.c = min(SHRT_MAX, (int)state.m.c*10+cs[0]-48);
+	} else if (len == 0) { 
+		if (kSym && (
+			*kSym == XK_Up ||
+		    *kSym == XK_Down ||
+			*kSym == XK_Left ||
+			*kSym == XK_Right
+		)) {
+            executeMotion((char)(len ? cs[0] : 0), kSym);
+		} else {
+			result = failed;
+		}
+    } else if (quantifier) { state.m.c = min(SHRT_MAX, (int)state.m.c*10+cs[0]-48);
 	} else if (state.cmd.infix && state.cmd.op && (result = expandExpression(cs[0]), len=0)) {
     } else if (cs[0] == 'd') { state = defaultNormalMode; result = exitMotion; state.m.active = 1;
 	} else if (cs[0] == '.') {
