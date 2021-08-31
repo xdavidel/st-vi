@@ -147,7 +147,7 @@ static unsigned int defaultrcs = 0;
 unsigned int bg = 256, bgUnfocused = 256;
 unsigned int const currentBg = 8, buffSize = 2048;
 /// Enable double / triple click yanking / selection of word / line.
-int const mouseYank = 1, mouseSelect = 0;
+int const mouseYank = 0, mouseSelect = 0;
 /// [Vim Browse] Colors for search results currently on screen.
 unsigned int const highlightBg = 160, highlightFg = 15;
 char const wDelS[] = "!\"#$%&'()*+,-./:;<=>?@[\\]^`{|}~", wDelL[] = " \t";
@@ -243,13 +243,13 @@ ResourcePref resources[] = {
 static MouseShortcut mshortcuts[] = {
 	/* mask                 button   function        argument       release */
 	{ XK_ANY_MOD,           Button2, clippaste,      {.i = 0           },  1 },
-  { XK_NO_MOD,            Button3, clippaste,      {.f = -1          }     },
+    { XK_NO_MOD,            Button3, clippaste,      {.f = -1          }     },
 	{ ShiftMask,            Button4, ttysend,        {.s = "\033[5;2~" }     },
 	{ ControlMask,          Button4, zoom,           {.f = 1           }     },
-	{ XK_ANY_MOD,           Button4, ttysend,        {.s = "\031"      }     },
+	{ XK_ANY_MOD,           Button4, kscroll,        {.i = -1          }     },
 	{ ShiftMask,            Button5, ttysend,        {.s = "\033[6;2~" }     },
 	{ ControlMask,          Button5, zoom,           {.f = -1          }     },
-	{ XK_ANY_MOD,           Button5, ttysend,        {.s = "\005"      }     },
+	{ XK_ANY_MOD,           Button5, kscroll,        {.i = 1           }     },
 };
 
 /* Internal keyboard shortcuts. */
@@ -275,6 +275,7 @@ static Shortcut shortcuts[] = {
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ SHIFT_CTRL_MOD,       XK_Num_Lock,    numlock,        {.i =  0} },
 	{ MODKEY,               XK_c,           normalMode,     {.i =  0} },
+	{ MODKEY,               XK_i,           historyQuit,    {.i =  0} },
 };
 
 /*
@@ -416,9 +417,9 @@ static Key key[] = {
 	{ XK_Insert,        XK_NO_MOD,          "\033[4h",      -1,    0},
 	{ XK_Insert,        XK_NO_MOD,          "\033[2~",      +1,    0},
 	{ XK_Delete,        ControlMask,        "\033[3;5~",    +1,    0},
-  { XK_Delete,        ShiftMask,          "\033[2K",      -1,    0},
+    { XK_Delete,        ShiftMask,          "\033[2K",      -1,    0},
  	{ XK_Delete,        ShiftMask,          "\033[3;2~",    +1,    0},
-  { XK_Delete,        XK_ANY_MOD,         "\033[3~",      -1,    0},
+    { XK_Delete,        XK_ANY_MOD,         "\033[3~",      -1,    0},
  	{ XK_Delete,        XK_ANY_MOD,         "\033[3~",      +1,    0},
 	{ XK_BackSpace,     XK_NO_MOD,          "\177",          0,    0},
 	{ XK_BackSpace,     Mod1Mask,           "\033\177",      0,    0},

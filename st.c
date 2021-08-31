@@ -504,6 +504,22 @@ int historyMove(int x, int y, int ly) {
 
 #include "normalMode.c"
 
+void historyQuit() { historyModeToggle(0); }
+
+void
+kscroll(const Arg *arg) {
+	int win_mode = getMode();
+	int old_histMode = histMode;
+
+	if (win_mode & MODE_NORMAL) {
+       historyMove(0, arg->i, 0);
+    } else {
+		if (!histMode) historyModeToggle(1);
+		historyMove(0, 0, arg->i);
+		if (insertOff == histOff) historyModeToggle(0);
+    }
+}
+
 void selnormalize(void) {
 	historyOpToggle(1, 1);
 

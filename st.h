@@ -90,6 +90,8 @@ void printscreen(const Arg *);
 void printsel(const Arg *);
 void sendbreak(const Arg *);
 void toggleprinter(const Arg *);
+void historyQuit();
+void kscroll(const Arg *arg);
 
 int tattrset(int);
 void tnew(int, int);

@@ -809,7 +809,12 @@ xloadcolor(int i, const char *name, Color *ncolor)
 	return XftColorAllocName(xw.dpy, xw.vis, xw.cmap, name, ncolor);
 }
 
-void normalMode() { historyModeToggle((win.mode ^=MODE_NORMAL) & MODE_NORMAL); }
+int getMode() { return win.mode; }
+
+void normalMode() { 
+	historyQuit();
+	historyModeToggle((win.mode ^=MODE_NORMAL) & MODE_NORMAL); 
+}
 
 void
 xloadalpha(void)
