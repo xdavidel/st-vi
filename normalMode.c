@@ -270,7 +270,7 @@ end:
 }
 
 void historyOverlay(int x, int y, Glyph* g) {
-	if (!histMode) return;
+	if (!histMode || !viMode) return;
 	TCursor const *cHist = histOp ? &term.c : &c[0];
 	if(overlay && term.col > 9 && term.row > 4 && (x > (2*term.col/3)) && (y >= (term.row-2))) {
 		*g = (y == term.row - 2) ? styleSearch : styleCmd;

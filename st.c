@@ -234,7 +234,7 @@ static Rune utfmax[UTF_SIZ + 1] = {0x10FFFF, 0x7F, 0x7FF, 0xFFFF, 0x10FFFF};
 
 int buffCols;
 extern int const buffSize;
-int histOp, histMode, histOff, insertOff, altToggle, *mark;
+int histOp, histMode, histOff, insertOff, altToggle, *mark, viMode;
 Line *buf = NULL;
 static TCursor c[3];
 static inline int rows() { return IS_SET(MODE_ALTSCREEN) ? term.row : buffSize;}
@@ -446,6 +446,8 @@ void historyOpToggle(int start, int paint) {
 }
 
 void historyModeToggle(int start) {
+	viMode = start & MODE_NORMAL ? 1 : 0;
+	
 	if (!(histMode = (histOp = !!start))) {
 		selnormalize();
 		tfulldirt();
