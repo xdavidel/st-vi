@@ -510,15 +510,15 @@ void historyQuit() { historyModeToggle(0); }
 
 void
 kscroll(const Arg *arg) {
-	int win_mode = getMode();
-	int old_histMode = histMode;
+    int win_mode = getMode();
+    int old_histMode = histMode;
 
-	if (win_mode & MODE_NORMAL) {
-       historyMove(0, arg->i, 0);
+    if (win_mode & MODE_NORMAL) {
+        historyMove(0, arg->i, 0);
     } else {
-		if (!histMode) historyModeToggle(1);
-		historyMove(0, 0, arg->i);
-		if (insertOff == histOff) historyModeToggle(0);
+        if (!histMode) historyModeToggle(1);
+        historyMove(0, 0, arg->i * 3);
+        if (insertOff == histOff) historyModeToggle(0);
     }
 }
 
